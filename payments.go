@@ -156,13 +156,13 @@ func (c *SellixClient) CreatePaymentWhitelabel(payment *CheckoutSessionParams) (
 	return &sellixResponse, nil
 }
 
-func (c *SellixClient) CompletePayment(uniqueId string) (*SellixReturnType, error) {
+func (c *SellixClient) CompletePayment(uniqueId string) (*SellixResponseType, error) {
 	body, err := c.createRequest("PUT", "/payments/"+uniqueId, nil)
 	if err != nil {
 		return nil, err
 	}
 
-	var sellixResponse SellixReturnType
+	var sellixResponse SellixResponseType
 	err = json.Unmarshal(body, &sellixResponse)
 	if err != nil {
 		return nil, err
@@ -171,13 +171,13 @@ func (c *SellixClient) CompletePayment(uniqueId string) (*SellixReturnType, erro
 	return &sellixResponse, nil
 }
 
-func (c *SellixClient) DeletePayment(uniqueId string) (*SellixReturnType, error) {
+func (c *SellixClient) DeletePayment(uniqueId string) (*SellixResponseType, error) {
 	body, err := c.createRequest("DELETE", "/payments/"+uniqueId, nil)
 	if err != nil {
 		return nil, err
 	}
 
-	var sellixResponse SellixReturnType
+	var sellixResponse SellixResponseType
 	err = json.Unmarshal(body, &sellixResponse)
 	if err != nil {
 		return nil, err

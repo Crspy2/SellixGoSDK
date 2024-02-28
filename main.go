@@ -16,7 +16,7 @@ type SellixClient struct {
 	baseUrl   string
 }
 
-type SellixReturnType struct {
+type SellixResponseType struct {
 	Status  int         `json:"status"`
 	Data    interface{} `json:"data"`
 	Message string      `json:"message"`

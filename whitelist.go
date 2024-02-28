@@ -5,10 +5,9 @@ import (
 	"fmt"
 )
 
-type BlacklistObject struct {
+type WhitelistObject struct {
 	Id        int    `json:"id"`
 	UniqueId  string `json:"uniqid"`
-	Scope     string `json:"scope"`
 	ShopId    int    `json:"shop_id"`
 	Type      string `json:"type"`
 	Data      string `json:"data"`
@@ -18,17 +17,17 @@ type BlacklistObject struct {
 	UpdatedBy int    `json:"updated_by"`
 }
 
-type GetBlacklistResponseType struct {
+type GetWhitelistResponseType struct {
 	SellixResponseType
-	Data *BlacklistObject
+	Data *WhitelistObject
 }
 
-func (c *SellixClient) GetBlacklist(blacklistId string) (*GetBlacklistResponseType, error) {
-	body, err := c.createRequest("GET", "/blacklists/"+blacklistId, nil)
+func (c *SellixClient) GetWhitelist(whitelistId string) (*GetWhitelistResponseType, error) {
+	body, err := c.createRequest("GET", "/whitelists/"+whitelistId, nil)
 	if err != nil {
 		return nil, err
 	}
-	var sellixResponse GetBlacklistResponseType
+	var sellixResponse GetWhitelistResponseType
 	err = json.Unmarshal(body, &sellixResponse)
 	if err != nil {
 		return nil, err
@@ -37,18 +36,17 @@ func (c *SellixClient) GetBlacklist(blacklistId string) (*GetBlacklistResponseTy
 	return &sellixResponse, nil
 }
 
-type ListBlacklistResponseType struct {
+type ListWhitelistResponseType struct {
 	SellixResponseType
-	Data []BlacklistObject
+	Data []WhitelistObject
 }
 
-func (c *SellixClient) ListBlacklists() (*ListBlacklistResponseType, error) {
-	body, err := c.createRequest("GET", "/blacklists", nil)
+func (c *SellixClient) ListWhitelist() (*ListWhitelistResponseType, error) {
+	body, err := c.createRequest("GET", "/whitelists", nil)
 	if err != nil {
 		return nil, err
 	}
-
-	var sellixResponse ListBlacklistResponseType
+	var sellixResponse ListWhitelistResponseType
 	err = json.Unmarshal(body, &sellixResponse)
 	if err != nil {
 		return nil, err
@@ -57,13 +55,13 @@ func (c *SellixClient) ListBlacklists() (*ListBlacklistResponseType, error) {
 	return &sellixResponse, nil
 }
 
-type BlacklistEntry struct {
+type WhitelistEntry struct {
 	Type string `json:"type"`
 	Data string `json:"data"`
 	Note string `json:"note"`
 }
 
-func validateBlacklistType(t string) bool {
+func validateWhitelistType(t string) bool {
 	validTypes := map[string]struct{}{
 		"EMAIL":   {},
 		"IP":      {},
@@ -76,25 +74,25 @@ func validateBlacklistType(t string) bool {
 	return ok
 }
 
-type CreateBlacklistResponseType struct {
+type CreateWhitelistResponseType struct {
 	SellixResponseType
 	Data *struct {
 		UniqueId string `json:"uniqid"`
 	}
 }
 
-func (c *SellixClient) CreateBlacklist(p *BlacklistEntry) (*CreateBlacklistResponseType, error) {
-	ok := validateBlacklistType(p.Type)
+func (c *SellixClient) CreateWhitelist(p *WhitelistEntry) (*CreateWhitelistResponseType, error) {
+	ok := validateWhitelistType(p.Type)
 	if !ok {
-		return nil, fmt.Errorf("invalid Blacklist Type: %s", p.Type)
+		return nil, fmt.Errorf("invalid whitelist type: %s", p.Type)
 	}
 
-	body, err := c.createRequest("POST", "/blacklists", p)
+	body, err := c.createRequest("POST", "/whitelists", p)
 	if err != nil {
 		return nil, err
 	}
 
-	var sellixResponse CreateBlacklistResponseType
+	var sellixResponse CreateWhitelistResponseType
 	err = json.Unmarshal(body, &sellixResponse)
 	if err != nil {
 		return nil, err
@@ -103,13 +101,13 @@ func (c *SellixClient) CreateBlacklist(p *BlacklistEntry) (*CreateBlacklistRespo
 	return &sellixResponse, nil
 }
 
-func (c *SellixClient) UpdateBlacklist(p *BlacklistEntry) (*SellixResponseType, error) {
-	ok := validateBlacklistType(p.Type)
+func (c *SellixClient) UpdateWhitelist(p *WhitelistEntry) (*SellixResponseType, error) {
+	ok := validateWhitelistType(p.Type)
 	if !ok {
-		return nil, fmt.Errorf("invalid Blacklist Type: %s", p.Type)
+		return nil, fmt.Errorf("invalid whitelist type: %s", p.Type)
 	}
 
-	body, err := c.createRequest("PUT", "/blacklists", p)
+	body, err := c.createRequest("PUT", "/whitelists", p)
 	if err != nil {
 		return nil, err
 	}
@@ -123,8 +121,8 @@ func (c *SellixClient) UpdateBlacklist(p *BlacklistEntry) (*SellixResponseType, 
 	return &sellixResponse, nil
 }
 
-func (c *SellixClient) DeleteBlacklist(blacklistId string) (*SellixResponseType, error) {
-	body, err := c.createRequest("DELETE", "/blacklists/"+blacklistId, nil)
+func (c *SellixClient) DeleteWhitelist(whitelistId string) (*SellixResponseType, error) {
+	body, err := c.createRequest("DELETE", "/whitelists/"+whitelistId, nil)
 	if err != nil {
 		return nil, err
 	}
