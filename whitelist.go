@@ -81,7 +81,7 @@ type CreateWhitelistResponseType struct {
 	}
 }
 
-func (c *SellixClient) CreateWhitelist(p *WhitelistEntry) (*CreateWhitelistResponseType, error) {
+func (c *SellixClient) CreateWhitelist(p *WhitelistEntry) (*PostRequestSellixResponse, error) {
 	ok := validateWhitelistType(p.Type)
 	if !ok {
 		return nil, fmt.Errorf("invalid whitelist type: %s", p.Type)
@@ -92,7 +92,7 @@ func (c *SellixClient) CreateWhitelist(p *WhitelistEntry) (*CreateWhitelistRespo
 		return nil, err
 	}
 
-	var sellixResponse CreateWhitelistResponseType
+	var sellixResponse PostRequestSellixResponse
 	err = json.Unmarshal(body, &sellixResponse)
 	if err != nil {
 		return nil, err

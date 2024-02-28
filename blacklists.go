@@ -76,14 +76,7 @@ func validateBlacklistType(t string) bool {
 	return ok
 }
 
-type CreateBlacklistResponseType struct {
-	SellixResponseType
-	Data *struct {
-		UniqueId string `json:"uniqid"`
-	}
-}
-
-func (c *SellixClient) CreateBlacklist(p *BlacklistEntry) (*CreateBlacklistResponseType, error) {
+func (c *SellixClient) CreateBlacklist(p *BlacklistEntry) (*PostRequestSellixResponse, error) {
 	ok := validateBlacklistType(p.Type)
 	if !ok {
 		return nil, fmt.Errorf("invalid Blacklist Type: %s", p.Type)
@@ -94,7 +87,7 @@ func (c *SellixClient) CreateBlacklist(p *BlacklistEntry) (*CreateBlacklistRespo
 		return nil, err
 	}
 
-	var sellixResponse CreateBlacklistResponseType
+	var sellixResponse PostRequestSellixResponse
 	err = json.Unmarshal(body, &sellixResponse)
 	if err != nil {
 		return nil, err
