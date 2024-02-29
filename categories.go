@@ -38,7 +38,7 @@ type CategoryObject struct {
 		QuantityMin            int         `json:"quantity_min"`
 		QuantityMax            int         `json:"quantity_max"`
 		QuantityWarning        int         `json:"quantity_warning"`
-		Gateways               []string    `json:"gateways"`
+		Gateways               GatewayEnum `json:"gateways"`
 		CustomFields           []struct {
 			Type        string      `json:"type"`
 			Name        string      `json:"name"`

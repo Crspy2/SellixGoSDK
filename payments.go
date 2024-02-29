@@ -14,9 +14,9 @@ type CheckoutSessionParams struct {
 			UnitQuantity uint   `json:"unit_quantity"`
 		} `json:"products"`
 	} `json:"cart"`
-	Gateway          string            `json:"gateway"`
-	Gateways         []string          `json:"gateways"`
-	PayPalAPM        string            `json:"paypal_apm"`
+	Gateway          GatewayEnum       `json:"gateway"`
+	Gateways         []GatewayEnum     `json:"gateways"`
+	PayPalAPM        PaypalAPMEnum     `json:"paypal_apm"`
 	CreditCard       bool              `json:"credit_card"`
 	LexPaymentMethod string            `json:"lex_payment_method"`
 	Value            float64           `json:"value"`
@@ -68,7 +68,7 @@ type PaymentWhiteLabelResponse struct {
 			ProductType               string            `json:"product_type"`
 			ProductPrice              float64           `json:"product_price"`
 			FileAttachmentUniqueID    interface{}       `json:"file_attachment_uniqid"`
-			Gateway                   string            `json:"gateway"`
+			Gateway                   GatewayEnum       `json:"gateway"`
 			PaypalEmail               interface{}       `json:"paypal_email"`
 			PaypalOrderID             interface{}       `json:"paypal_order_id"`
 			PaypalPayerEmail          interface{}       `json:"paypal_payer_email"`
