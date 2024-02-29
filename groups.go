@@ -6,7 +6,7 @@ import (
 
 type GroupObject struct {
 	Id            int             `json:"id"`
-	Uniqid        string          `json:"uniqid"`
+	UniqueId      string          `json:"uniqid"`
 	ShopId        int             `json:"shop_id"`
 	Title         string          `json:"title"`
 	Unlisted      bool            `json:"unlisted"`
