@@ -31,7 +31,10 @@ func (c *SellixClient) createRequest(method string, url string, p interface{}) (
 	}
 
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", c.ApiKey))
-	req.Header.Set("X-Sellix-Merchant", *c.storeName)
+
+	if c.storeName != nil {
+		req.Header.Set("X-Sellix-Merchant", *c.storeName)
+	}
 	req.Header.Set("Content-Type", "application/json")
 
 	client := &http.Client{}
