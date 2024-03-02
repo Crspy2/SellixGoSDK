@@ -1,6 +1,6 @@
 # Sellix Go SDK
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/crspy2/SellixGoSDK)](https://pkg.go.dev/github.com/crspy2/SellixGoSDK6)
+[![Go Reference](https://pkg.go.dev/badge/github.com/crspy2/SellixGoSDK)](https://pkg.go.dev/github.com/crspy2/SellixGoSDK)
 [![Go Report Card](https://goreportcard.com/badge/github.com/crspy2/SellixGoSDK)](https://goreportcard.com/report/github.com/crspy2/SellixGoSDK)
 [![License](https://img.shields.io/github/license/crspy2/SellixGoSDK)](https://img.shields.io/github/license/crspy2/SellixGoSDK)
 
