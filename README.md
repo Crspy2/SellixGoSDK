@@ -15,7 +15,7 @@ Sellix public API for developers to access merchant resources
 
 ## Installation
 
-Install the package through NPM.
+Install the package:
 
 ```
 go get github.com/crspy2/SellixGoSDK
