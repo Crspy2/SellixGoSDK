@@ -1,4 +1,4 @@
-package SellixGoSDK
+package sellix
 
 import "net/http"
 
