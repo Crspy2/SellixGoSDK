@@ -35,7 +35,7 @@ import (
 
 func main() {
 	// Get your API Key from https://dashboard.sellix.io/settings/security
-	client := SellixGoSDK.NewSellixClient("<API_KEY>")
+	client := sellix.NewSellixClient("<API_KEY>")
 	// Only call this method if you have multiple shops on your sellix account
 	client.SetStoreName("<STORE_NAME>")
 	info, err := client.ListProducts()
